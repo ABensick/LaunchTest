@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LaunchDarkly Integration</title>
+    <script src="https://unpkg.com/launchdarkly-js-client-sdk@2"></script>
+    <center>"Welcome to MusicFinder"</center>
+  </head>
+
+  <body>
+    <script>
+      var user = {
+        "firstName": "Alex",
+        "lastName": "Bensick",
+        "email" : "abensick@gmail.com",
+        "key": "abensick"
+        };
+      var ldclient = LDClient.initialize('5d696a30cf3087086712ab96', user)
+
+      ldclient.on('ready', function() {
+        console.log("It's now safe to request feature flags");
+        var showFeature = ldclient.variation("alertbool", false);
+
+      if (showFeature) {
+      alert("You got a feature flag")
+  }
+     else {
+      alert("No flag for you!")
+  }
+});
+    </script>
+  </body>
